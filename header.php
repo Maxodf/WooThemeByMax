@@ -39,3 +39,26 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+<header>
+	<i class="fas fa-shopping-home"></i>
+	<a href="<?php echo esc_url(home_url('/')); ?>">Accueil</a>
+    <div class="cart-info">
+		<i class="fas fa-shopping-cart"></i>
+        <a href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+            Panier 
+            <?php
+            $cart_count = WC()->cart->get_cart_contents_count();
+            if ( $cart_count > 0 ) {
+                echo '<span class="cart-count">' . esc_html( $cart_count ) . '</span>';
+            }
+            ?>
+        </a>
+		<div class="woocommerce-pages">
+			<a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">Mon compte</a>
+			<a href="<?php echo esc_url(wc_get_page_permalink('cart')); ?>">Panier</a>
+			<a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>">Boutique</a>
+		</div>
+    </div>
+
+</header>
